@@ -24,5 +24,26 @@ public class Fruit{
   
   }
   
-
+  void grape(int x, int y) {}
+  
+  void strawberry(int x, int y) {}
+  
+  void lime(int x, int y) {}
+  
+  void lemon(int x, int y) {}
+  
+  void kiwi(int x, int y) {}
+  
+  void peach(int x, int y) {}
+  
+  void apple(int x, int y) {}
+  
+  void dragonfruit(int x, int y) {}
+  
+  void pineapple(int x, int y) {}
+  
+  void coconut(int x, int y) {}
+  
+  void watermelon(int x, int y) {}
+  
 }
