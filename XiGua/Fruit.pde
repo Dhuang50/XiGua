@@ -1,12 +1,14 @@
 public class Fruit{
   String type;
-  PVector force;
   PVector position;
+  PVector velocity;
+  int size;
   
   public Fruit(String type, PVector position){
     this.type = type;
-    force = new PVector(0, 0);
+    velocity = new PVector(0, 0);
     this.position = position;
+    size = 5;
   }
   
   void display(){
@@ -14,14 +16,23 @@ public class Fruit{
     circle(position.x, position.y, 50);
   }
   
-  void inContact(ArrayList<Fruit> list, Fruit other){
-    if(this.type.equals(other.type)){
-      this.merge(other);
+  void move(PVector force){
+    this.velocity.add(force);
+    this.position.add(velocity);
+  }
+  
+  void inContact(Fruit other){
+    if(other.getPosition().x + other.size == this.getPosition().x + this.size){
+      other.velocity.x = 0;
+    }
+    if (other.position.y + other.size == this.position.y + this.size){
+      other.position.y = this.position.y+ other.size + this.size;
     }
   }
   
-  void merge(Fruit other){
   
+  PVector getPosition(){
+    return this.position;
   }
   
   void grape(int x, int y) {}
