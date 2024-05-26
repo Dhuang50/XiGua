@@ -2,11 +2,13 @@ public class Fruit{
   String type;
   PVector position;
   PVector velocity;
+  PVector acceleration;
   int size;
   
   public Fruit(String type, PVector position){
     this.type = type;
     velocity = new PVector(0, 0);
+    acceleration = new PVector(0, 0);
     this.position = position;
     size = 5;
   }
@@ -22,15 +24,17 @@ public class Fruit{
   }
   
   void inContact(Fruit other){
-    if(other.getPosition().x + other.size == this.getPosition().x + this.size){
-      other.velocity.x = 0;
-    }
-    if (other.position.y + other.size == this.position.y + this.size){
-      other.position.y = this.position.y+ other.size + this.size;
+    if(this.distance(other) < this.size + other.size + 1){
+       
     }
   }
   
-  
+  double distance(Fruit other){
+   double x = Math.pow(this.position.x - other.getPosition().x, 2);
+   double y = Math.pow(this.position.y - other.getPosition().y, 2);
+   return Math.pow(x + y, 0.5);
+   }
+   
   PVector getPosition(){
     return this.position;
   }
