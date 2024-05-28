@@ -24,11 +24,17 @@ void draw() {
   }
   else{
     focusFruit.position.x = mouseX;
-    focusFruit.display();
+    if(fruitList.size() == 0 || fruitList.get(fruitList.size()-1).dropped == true){
+      focusFruit.display();
+    }
   }
   for(Fruit f: fruitList){
     f.display();
     f.move(gravity);
+    f.border();
+    for(Fruit o: fruitList){
+      f.inContact(o);
+    }
   }
   
 }
@@ -36,5 +42,4 @@ void draw() {
 void mouseClicked() {
   fruitList.add(focusFruit);
   focusFruit = empty;
-  delay(500);
 }

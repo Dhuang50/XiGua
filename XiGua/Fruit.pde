@@ -4,6 +4,7 @@ public class Fruit{
   PVector velocity;
   PVector acceleration;
   int size;
+  boolean dropped;
   
   public Fruit(String type, PVector position){
     this.type = type;
@@ -11,6 +12,7 @@ public class Fruit{
     acceleration = new PVector(0, 0);
     this.position = position;
     size = 5;
+    dropped = false;
   }
   
   void display(){
@@ -24,8 +26,11 @@ public class Fruit{
   }
   
   void inContact(Fruit other){
+    if(position.y >= 700-size){
+      dropped = true;
+    }
     if(this.distance(other) < this.size + other.size + 1){
-       
+      
     }
   }
   
@@ -37,6 +42,20 @@ public class Fruit{
    
   PVector getPosition(){
     return this.position;
+  }
+  
+  boolean border(){
+    boolean top = false;
+    if(position.y >= 700-size){
+      velocity.y *= -1;
+    }
+    if(position.y <= 100 && dropped){
+      top = true;
+    }
+    if(position.x >= 600 - size || position.x <= size){
+      velocity.x *= -1;
+    }   
+    return top;
   }
   
   void grape(int x, int y) {}
