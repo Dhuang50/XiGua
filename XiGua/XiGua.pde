@@ -20,10 +20,8 @@ void draw() {
   
   PVector gravity = new PVector(0,1);
   if(focusFruit == null || focusFruit == empty){
-    PVector spawn = new PVector(300, 50);
-    Fruit newf = new Fruit("grape", spawn);
-    focusFruit = newf;
-  }
+    spawnFruit();
+}
   else{
     focusFruit.position.x = mouseX;
     if(fruitList.size() == 0 || fruitList.get(fruitList.size()-1).dropped == true){
@@ -44,6 +42,13 @@ void draw() {
 >>>>>>> 546f5c1a3cb44e49f21cfcd5b9431619c05c450b
   }
   
+}
+
+void spawnFruit() {
+  PVector spawn = new PVector(300,50);
+  int type = (int)random(4);
+  Fruit newf = new Fruit(type,spawn);
+  focusFruit = newf;
 }
 
 void mouseClicked() {
