@@ -20,9 +20,15 @@ public class Fruit{
     circle(position.x, position.y, 50);
   }
   
-  void move(PVector force){
-    this.velocity.add(force);
-    this.position.add(velocity);
+  void move(){
+    position = position.add(velocity);
+    velocity = velocity.add(acceleration);
+    velocity.limit(5);
+    acceleration = new PVector(0,0);
+  }  
+  
+  void applyForce(PVector force) {
+    acceleration = acceleration.add(force);
   }
   
   void inContact(Fruit other){

@@ -17,6 +17,8 @@ void draw() {
   fill(255);
   textSize(20);
   text(score,20,75);
+  
+  PVector gravity = new PVector(0,1);
   if(focusFruit == null || focusFruit == empty){
     PVector spawn = new PVector(300, 50);
     Fruit newf = new Fruit("grape", spawn);
@@ -29,12 +31,17 @@ void draw() {
     }
   }
   for(Fruit f: fruitList){
+    f.applyForce(gravity);
     f.display();
+<<<<<<< HEAD
     f.move(gravity);
     f.border();
     for(Fruit o: fruitList){
       f.inContact(o);
     }
+=======
+    f.move();
+>>>>>>> 546f5c1a3cb44e49f21cfcd5b9431619c05c450b
   }
   
 }
