@@ -20,10 +20,8 @@ void draw() {
   
   PVector gravity = new PVector(0,1);
   if(focusFruit == null || focusFruit == empty){
-    PVector spawn = new PVector(300, 50);
-    Fruit newf = new Fruit("grape", spawn);
-    focusFruit = newf;
-  }
+    spawnFruit();
+}
   else{
     focusFruit.position.x = mouseX;
     focusFruit.display();
@@ -34,6 +32,13 @@ void draw() {
     f.move();
   }
   
+}
+
+void spawnFruit() {
+  PVector spawn = new PVector(300,50);
+  int type = (int)random(4);
+  Fruit newf = new Fruit(type,spawn);
+  focusFruit = newf;
 }
 
 void mouseClicked() {

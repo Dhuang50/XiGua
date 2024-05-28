@@ -1,11 +1,11 @@
 public class Fruit{
-  String type;
+  int type;
   PVector position;
   PVector velocity;
   PVector acceleration;
   int size;
   
-  public Fruit(String type, PVector position){
+  public Fruit(int type, PVector position){
     this.type = type;
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
