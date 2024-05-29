@@ -2,7 +2,7 @@ ArrayList<Fruit> fruitList;
 int score = 0;
 PVector gravity = new PVector(0, 0.05);
 Fruit focusFruit;
-Fruit empty = new Fruit("apple", new PVector(0,0));
+Fruit empty = new Fruit(0, new PVector(0,0));
 
 void setup() {
   size(600,800);
@@ -25,21 +25,18 @@ void draw() {
   else{
     focusFruit.position.x = mouseX;
     if(fruitList.size() == 0 || fruitList.get(fruitList.size()-1).dropped == true){
+      focusFruit.border();
       focusFruit.display();
     }
   }
   for(Fruit f: fruitList){
     f.applyForce(gravity);
-    f.display();
-<<<<<<< HEAD
-    f.move(gravity);
-    f.border();
+    f.move();
     for(Fruit o: fruitList){
       f.inContact(o);
     }
-=======
-    f.move();
->>>>>>> 546f5c1a3cb44e49f21cfcd5b9431619c05c450b
+    f.border();
+    f.display();
   }
   
 }

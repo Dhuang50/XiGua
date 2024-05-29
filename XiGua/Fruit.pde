@@ -11,7 +11,7 @@ public class Fruit{
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     this.position = position;
-    size = 5;
+    size = 25;
     dropped = false;
   }
   
@@ -23,8 +23,8 @@ public class Fruit{
   void move(){
     position = position.add(velocity);
     velocity = velocity.add(acceleration);
-    velocity.limit(5);
-    acceleration = new PVector(0,0);
+    velocity.limit(8);
+    acceleration = new PVector(0, 0);
   }  
   
   void applyForce(PVector force) {
@@ -32,35 +32,34 @@ public class Fruit{
   }
   
   void inContact(Fruit other){
-    if(position.y >= 700-size){
+    if(position.y >= height-100-size){
       dropped = true;
     }
-    if(this.distance(other) < this.size + other.size + 1){
-      
+    if(position.dist(other.position) <= this.size + other.size + 1){
+      if(other.dropped == true){
+        dropped = true;
+      }
+    
     }
-  }
-  
-  double distance(Fruit other){
-   double x = Math.pow(this.position.x - other.getPosition().x, 2);
-   double y = Math.pow(this.position.y - other.getPosition().y, 2);
-   return Math.pow(x + y, 0.5);
-   }
-   
-  PVector getPosition(){
-    return this.position;
   }
   
   boolean border(){
     boolean top = false;
-    if(position.y >= 700-size){
-      velocity.y *= -1;
+    if(position.y >= height-100-size){
+      velocity.y = 0;
+      position.y = height-100-size;
     }
     if(position.y <= 100 && dropped){
       top = true;
     }
-    if(position.x >= 600 - size || position.x <= size){
+    if(position.x >= width - size){
+      position.x = width - size;
       velocity.x *= -1;
     }   
+    if(position.x <= size){
+      position.x = size;
+      velocity.x *= -1;
+    }
     return top;
   }
   
