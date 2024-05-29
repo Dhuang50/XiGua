@@ -39,11 +39,16 @@ public class Fruit{
       if(other.dropped == true){
         dropped = true;
         PVector diff = PVector.sub(position, other.position);
-       float angle = diff.heading();
-       float vertical = sin(angle)*diff.mag();
-       float horizontal = cos(angle)*diff.mag();
-       position.y += vertical/2;
-       position.x += horizontal/2;
+        float angle = diff.heading();
+        float dP = (this.size + other.size+2) - position.dist(other.position);
+        float vertical = sin(angle)*dP;
+        float horizontal = cos(angle)*dP;
+        position.y += vertical;
+        position.x += horizontal;
+        velocity.x /= 2;
+        velocity.y /= 2;
+        other.velocity.x += velocity.x*cos(angle)/2;
+        other.velocity.y += velocity.y*sin(angle)/2;
       }
     }
   }
@@ -51,7 +56,7 @@ public class Fruit{
   boolean border(){
     boolean top = false;
     if(position.y >= height-100-size){
-      velocity.y = 0;
+      velocity.y *= 0.01;
       position.y = height-100-size;
     }
     if(position.y <= 100 && dropped){

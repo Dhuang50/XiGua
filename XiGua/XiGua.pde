@@ -49,6 +49,8 @@ void spawnFruit() {
 }
 
 void mouseClicked() {
-  fruitList.add(focusFruit);
-  focusFruit = empty;
+  if(fruitList.size() == 0 || fruitList.get(fruitList.size()-1).dropped == true){
+    fruitList.add(focusFruit);
+    focusFruit = empty;
+  }
 }
