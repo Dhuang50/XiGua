@@ -37,8 +37,8 @@ public class Fruit{
     }
     if(position.dist(other.position) <= this.size + other.size + 1){
       if(other.dropped == true){
-        dropped = true;
-        PVector diff = PVector.sub(position, other.position);
+       dropped = true;
+       PVector diff = PVector.sub(position, other.position);
        float angle = diff.heading();
        float vertical = sin(angle)*diff.mag();
        float horizontal = cos(angle)*diff.mag();
@@ -47,6 +47,20 @@ public class Fruit{
       }
     }
   }
+  
+  boolean touching(Fruit other) {
+      if(position.y>=height-100-size) {
+        dropped = true;
+      }
+      if(position.dist(other.position) <= this.size + other.size + 1){
+        if(other.dropped == true){
+         dropped = true;
+         return true;
+        }
+      }
+      return false;
+  }
+  
   
   boolean border(){
     boolean top = false;
