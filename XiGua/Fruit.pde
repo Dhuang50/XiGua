@@ -38,8 +38,13 @@ public class Fruit{
     if(position.dist(other.position) <= this.size + other.size + 1){
       if(other.dropped == true){
         dropped = true;
+        PVector diff = PVector.sub(position, other.position);
+       float angle = diff.heading();
+       float vertical = sin(angle)*diff.mag();
+       float horizontal = cos(angle)*diff.mag();
+       position.y += vertical/2;
+       position.x += horizontal/2;
       }
-    
     }
   }
   
