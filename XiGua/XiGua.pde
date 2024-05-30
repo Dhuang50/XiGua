@@ -33,7 +33,9 @@ void draw() {
     f.applyForce(gravity);
     f.move();
     for(Fruit o: fruitList){
-      f.inContact(o);
+      if(f!= o){
+        f.inContact(o);
+      }
     }
     f.border();
     f.display();

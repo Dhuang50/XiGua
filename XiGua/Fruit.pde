@@ -21,9 +21,12 @@ public class Fruit{
   }
   
   void move(){
-    position = position.add(velocity);
     velocity = velocity.add(acceleration);
-    velocity.limit(8);
+    if(velocity.y < -0.5){
+      velocity.y = -0.5;
+    }
+    position = position.add(velocity);
+    velocity.limit(20);
     acceleration = new PVector(0, 0);
   }  
   
@@ -32,10 +35,7 @@ public class Fruit{
   }
   
   void inContact(Fruit other){
-    if(position.y >= height-100-size){
-      dropped = true;
-    }
-    if(position.dist(other.position) <= this.size + other.size + 1){
+    if(position.dist(other.position) <= this.size + other.size + 2){
       if(other.dropped == true){
         dropped = true;
         PVector diff = PVector.sub(position, other.position);
@@ -45,10 +45,12 @@ public class Fruit{
         float horizontal = cos(angle)*dP;
         position.y += vertical;
         position.x += horizontal;
-        velocity.x /= 2;
-        velocity.y /= 2;
-        other.velocity.x += velocity.x*cos(angle)/2;
-        other.velocity.y += velocity.y*sin(angle)/2;
+        float oVX = other.velocity.x;
+        float oVY = other.velocity.y;
+        other.velocity.x += velocity.x*cos(angle);
+        other.velocity.y += velocity.y*sin(angle);
+        velocity.x += oVX*cos(angle);
+        velocity.y += oVY*sin(angle);
       }
     }
   }
@@ -56,7 +58,8 @@ public class Fruit{
   boolean border(){
     boolean top = false;
     if(position.y >= height-100-size){
-      velocity.y *= 0.01;
+      dropped = true;
+      velocity.y = 0;
       position.y = height-100-size;
     }
     if(position.y <= 100 && dropped){
