@@ -17,7 +17,12 @@ public class Fruit{
   
   void display(){
     fill(0);
+    if (type == 1) {
+      grape(position.x,position.y);
+    }
+    else {
     circle(position.x, position.y, 50);
+    }
   }
   
   void move(){
@@ -37,8 +42,6 @@ public class Fruit{
   void inContact(Fruit other){
     if(position.dist(other.position) <= this.size + other.size + 2){
       if(other.dropped == true){
-<<<<<<< HEAD
-=======
         dropped = true;
         PVector diff = PVector.sub(position, other.position);
         float angle = diff.heading();
@@ -53,7 +56,6 @@ public class Fruit{
         other.velocity.y += velocity.y*sin(angle);
         velocity.x += oVX*cos(angle);
         velocity.y += oVY*sin(angle);
->>>>>>> main
       }
     }
   }
@@ -93,7 +95,16 @@ public class Fruit{
     return top;
   }
   
-  void grape(int x, int y) {}
+  void grape(float x, float y) {
+    fill(#8748b8); 
+    circle(x,y-10,20);
+
+    fill(#bc82e8);
+    ellipse(x,y,30,30);
+    
+    fill(#e663eb);
+    circle(x,y-5,25);
+  }
   
   void strawberry(int x, int y) {}
   
