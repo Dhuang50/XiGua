@@ -33,7 +33,9 @@ void draw() {
     f.applyForce(gravity);
     f.move();
     for(Fruit o: fruitList){
-      f.inContact(o);
+      if(f!= o){
+        f.inContact(o);
+      }
     }
     f.border();
     f.display();
@@ -49,6 +51,8 @@ void spawnFruit() {
 }
 
 void mouseClicked() {
-  fruitList.add(focusFruit);
-  focusFruit = empty;
+  if(fruitList.size() == 0 || fruitList.get(fruitList.size()-1).dropped == true){
+    fruitList.add(focusFruit);
+    focusFruit = empty;
+  }
 }
