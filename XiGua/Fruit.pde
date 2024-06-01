@@ -39,13 +39,13 @@ public class Fruit{
         dropped = true;
         PVector diff = PVector.sub(position, other.position);
         float angle = diff.heading();
-        float dP = (this.size + other.size) - diff.mag();
+        float dP = (this.size + other.size) - position.dist(other.position);
         float vertical = sin(angle)*dP;
         float horizontal = cos(angle)*dP;
         position.y += vertical;
         position.x += horizontal;
         
-        
+       angle = PVector.sub(velocity, other.velocity).heading();
        PVector[] rotatedV = {new PVector(), new PVector()};
        
        rotatedV[0].x = velocity.x*cos(angle) + velocity.y*sin(angle);
@@ -53,8 +53,8 @@ public class Fruit{
        rotatedV[1].x = other.velocity.x*cos(angle) + other.velocity.y*sin(angle);
        rotatedV[1].y = -1*other.velocity.x*sin(angle) + other.velocity.y*cos(angle);
        
-       rotatedV[0].setMag((other.mass*0.3*(rotatedV[1].mag()-rotatedV[0].mag()) + mass*rotatedV[0].mag() + other.mass*rotatedV[1].mag()) / (mass + other.mass));
-       rotatedV[1].setMag((mass*0.3*(rotatedV[0].mag()-rotatedV[1].mag()) + mass*rotatedV[0].mag() + other.mass*rotatedV[1].mag()) / (mass + other.mass));
+       rotatedV[0].setMag((other.mass*0.5*(rotatedV[1].mag()-rotatedV[0].mag()) + mass*rotatedV[0].mag() + other.mass*rotatedV[1].mag()) / (mass + other.mass));
+       rotatedV[1].setMag((mass*0.5*(rotatedV[0].mag()-rotatedV[1].mag()) + mass*rotatedV[0].mag() + other.mass*rotatedV[1].mag()) / (mass + other.mass));
        
        velocity.x = rotatedV[0].x*cos(angle) - rotatedV[0].y*sin(angle);
        velocity.y = rotatedV[0].x*sin(angle) + rotatedV[0].y*cos(angle);
@@ -68,7 +68,7 @@ public class Fruit{
     boolean top = false;
     if(position.y >= height-100-size){
       dropped = true;
-      velocity.y *= -0.0075;
+      velocity.y = 0;
       position.y = height-100-size;
     }
     if(position.y <= 100 && dropped){
@@ -76,17 +76,13 @@ public class Fruit{
     }
     if(position.x >= width - size){
       position.x = width - size;
-      PVector wall = new PVector(width-size, position.y);
-      PVector diff = PVector.sub(position, wall);
-      float angle = PI-diff.heading();
-      velocity.x = (velocity.x+0.0005)*cos(angle);
+      PVector wall = new PVector(-1*velocity.x, 0);
+      this.applyForce(wall);
     }   
     if(position.x <= size){
       position.x = size;
-      PVector wall = new PVector(width-size, position.y);
-      PVector diff = PVector.sub(position, wall);
-      float angle = 2*PI-diff.heading();
-      velocity.x = (velocity.x+0.0005)*cos(angle);
+      PVector wall = new PVector(-1*velocity.x, 0);
+      this.applyForce(wall);
     }
     return top;
   }
