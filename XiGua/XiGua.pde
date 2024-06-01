@@ -1,6 +1,6 @@
 ArrayList<Fruit> fruitList;
 int score = 0;
-PVector gravity = new PVector(0, 0.05);
+PVector gravity = new PVector(0, 0.5);
 Fruit focusFruit;
 Fruit empty = new Fruit(0, new PVector(0,0));
 
