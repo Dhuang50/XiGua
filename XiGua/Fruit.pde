@@ -11,7 +11,22 @@ public class Fruit{
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     this.position = position;
-    size = 25;
+    size = 20;
+    if (type == 1) {
+      size = 10;
+    }
+    else if (type == 2) {
+      size = 15;  
+    }
+    else if (type == 3) {
+      size = 20;   
+    }
+    else if (type == 4) {
+      size = 25;    
+    }
+    else {
+      size = 28;
+    }
     dropped = false;
   }
   
@@ -20,8 +35,18 @@ public class Fruit{
     if (type == 1) {
       grape(position.x,position.y);
     }
+    else if (type == 2) {
+      strawberry(position.x,position.y);
+    }
+    else if (type == 3) {
+      lime(position.x,position.y);
+    }
+    else if (type == 4) {
+      lemon(position.x,position.y);
+    }
     else {
-    circle(position.x, position.y, 50);
+      kiwi(position.x,position.y);
+      strokeWeight(1);
     }
   }
   
@@ -96,34 +121,72 @@ public class Fruit{
   }
   
   void grape(float x, float y) {
+    noStroke();
     fill(#8748b8); 
-    circle(x,y-10,20);
+    circle(x,y,20);
 
     fill(#bc82e8);
-    ellipse(x,y,30,30);
-    
-    fill(#e663eb);
-    circle(x,y-5,25);
+    circle(x,y,15);
   }
   
-  void strawberry(int x, int y) {}
+  void strawberry(float x, float y) {
+    noStroke();
+    fill(#e05012);
+    circle(x,y+2,30);
+    ellipse(x-7,y-3,20,30);
+    ellipse(x+7,y-3,20,30);
+    
+    fill(#eb885b);
+    ellipse(x,y-3,12,15);
+  }
   
-  void lime(int x, int y) {}
+  void lime(float x, float y) {
+    noStroke();
+    fill(#7bed34);
+    circle(x,y,40);
+    
+    noFill();
+    stroke(#e8f2e1);
+    circle(x,y,35);
+    line(x-13,y-13,x+13,y+13);
+    line(x-13,y+13,x+13,y-13);
+    line(x-17,y,x+17,y);
+    line(x,y+17,x,y-17);
+  }
   
-  void lemon(int x, int y) {}
+  void lemon(float x, float y) {
+    noStroke();
+    fill(#f7f30c);
+    circle(x,y,50);
+    
+    noFill();
+    stroke(#e3c962);
+    circle(x,y,45);
+    line(x-16,y-16,x+16,y+16);
+    line(x-16,y+16,x+16,y-16);
+    line(x-20,y,x+20,y);
+    line(x,y+20,x,y-20);
+  }
   
-  void kiwi(int x, int y) {}
+  void kiwi(float x, float y) {
+    stroke(#4d3e1e);
+    strokeWeight(2);
+    fill(#e2f569);
+    circle(x,y,55);
+    strokeWeight(3);
+    circle(x,y,20);
+  }
   
-  void peach(int x, int y) {}
+  void peach(float x, float y) {}
   
-  void apple(int x, int y) {}
+  void apple(float x, float y) {}
   
-  void dragonfruit(int x, int y) {}
+  void dragonfruit(float x, float y) {}
   
-  void pineapple(int x, int y) {}
+  void pineapple(float x, float y) {}
   
-  void coconut(int x, int y) {}
+  void coconut(float x, float y) {}
   
-  void watermelon(int x, int y) {}
+  void watermelon(float x, float y) {}
   
 }

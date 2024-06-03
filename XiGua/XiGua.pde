@@ -45,7 +45,7 @@ void draw() {
 
 void spawnFruit() {
   PVector spawn = new PVector(300,50);
-  int type = (int)random(4);
+  int type = (int)random(5);
   Fruit newf = new Fruit(type,spawn);
   focusFruit = newf;
 }
