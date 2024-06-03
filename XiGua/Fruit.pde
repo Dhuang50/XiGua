@@ -32,22 +32,23 @@ public class Fruit{
   
   void display(){
     fill(0);
-    if (type == 1) {
-      grape(position.x,position.y);
-    }
-    else if (type == 2) {
-      strawberry(position.x,position.y);
-    }
-    else if (type == 3) {
-      lime(position.x,position.y);
-    }
-    else if (type == 4) {
-      lemon(position.x,position.y);
-    }
-    else {
-      kiwi(position.x,position.y);
-      strokeWeight(1);
-    }
+    //if (type == 1) {
+    //  grape(position.x,position.y);
+    //}
+    //else if (type == 2) {
+    //  strawberry(position.x,position.y);
+    //}
+    //else if (type == 3) {
+    //  lime(position.x,position.y);
+    //}
+    //else if (type == 4) {
+    //  lemon(position.x,position.y);
+    //}
+    //else {
+    //  kiwi(position.x,position.y);
+    //  strokeWeight(1);
+    //}
+    apple(position.x,position.y);
   }
   
   void move(){
@@ -177,9 +178,35 @@ public class Fruit{
     circle(x,y,20);
   }
   
-  void peach(float x, float y) {}
+  void peach(float x, float y) {
+    stroke(#ff2b41);
+    fill(#fcb874);
+    ellipse(x,y,70,66);
+    
+    noStroke();
+    fill(#78532f);
+    ellipse(x,y-3,25,40);
+    size = 35;
+  }
   
-  void apple(float x, float y) {}
+  void apple(float x, float y) {
+    stroke(#ff0800);
+    strokeWeight(2);
+    fill(#fae3bb);
+    circle(x,y,80);
+    
+    fill(0);
+    stroke(0);
+    line(x-7,y-5,x-2,y+1);
+    line(x-8,y+5,x-2,y+5);
+    line(x-7,y+13,x-2,y+9);
+    
+    line(x+7,y-5,x+2,y+1);
+    line(x+8,y+5,x+2,y+5);
+    line(x+7,y+13,x+2,y+9);
+
+    size = 40;
+  }
   
   void dragonfruit(float x, float y) {}
   
