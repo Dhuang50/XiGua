@@ -25,7 +25,7 @@ public class Fruit{
   void move(){
     position = position.add(velocity);
     velocity = velocity.add(acceleration);
-    velocity.limit(10);
+    velocity.limit(20);
     acceleration = new PVector(0, 0);
   }  
   
@@ -33,19 +33,16 @@ public class Fruit{
     acceleration = acceleration.add(force);
   }
   
-  void inContact(Fruit other){
+  boolean inContact(Fruit other){
     if(position.dist(other.position) <= this.size + other.size + 2){
       if(other.dropped == true){
         dropped = true;
         PVector diff = PVector.sub(position, other.position);
-        float angle = diff.heading();
-        float dP = (this.size + other.size) - position.dist(other.position);
-        float vertical = sin(angle)*dP;
-        float horizontal = cos(angle)*dP;
-        position.y += vertical;
-        position.x += horizontal;
+        diff = diff.normalize();
+        position.add(diff);
+        other.position.sub(diff);
         
-       angle = PVector.sub(velocity, other.velocity).heading();
+       float angle = PVector.sub(velocity, other.velocity).heading();
        PVector[] rotatedV = {new PVector(), new PVector()};
        
        rotatedV[0].x = velocity.x*cos(angle) + velocity.y*sin(angle);
@@ -53,14 +50,24 @@ public class Fruit{
        rotatedV[1].x = other.velocity.x*cos(angle) + other.velocity.y*sin(angle);
        rotatedV[1].y = -1*other.velocity.x*sin(angle) + other.velocity.y*cos(angle);
        
-       rotatedV[0].setMag((other.mass*0.5*(rotatedV[1].mag()-rotatedV[0].mag()) + mass*rotatedV[0].mag() + other.mass*rotatedV[1].mag()) / (mass + other.mass));
-       rotatedV[1].setMag((mass*0.5*(rotatedV[0].mag()-rotatedV[1].mag()) + mass*rotatedV[0].mag() + other.mass*rotatedV[1].mag()) / (mass + other.mass));
+       float newV1 = (mass - other.mass)/(mass + other.mass)*rotatedV[0].mag() + (2*other.mass / (mass + other.mass))*rotatedV[1].mag();
+       float newV2 = (2*mass)/(mass + other.mass)*rotatedV[0].mag() - ((mass - other.mass)/(mass + other.mass))*rotatedV[1].mag();
+       
+       rotatedV[0].setMag(newV1);
+       rotatedV[1].setMag(newV2);
        
        velocity.x = rotatedV[0].x*cos(angle) - rotatedV[0].y*sin(angle);
        velocity.y = rotatedV[0].x*sin(angle) + rotatedV[0].y*cos(angle);
        other.velocity.x = rotatedV[1].x*cos(angle) - rotatedV[1].y*sin(angle);
        other.velocity.y = rotatedV[1].x*sin(angle) + rotatedV[1].y*cos(angle);
+       
+       position.x += velocity.x;
+       position.y += velocity.y;
       }
+      return true;
+    }
+    else{
+      return false;
     }
   }
   

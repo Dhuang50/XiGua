@@ -29,12 +29,14 @@ void draw() {
       focusFruit.display();
     }
   }
-  for(Fruit f: fruitList){
-    f.applyForce(gravity);
-    f.move();
-    for(Fruit o: fruitList){
-      if(f!= o){
-        f.inContact(o);
+  for(int f = 0; f < fruitList.size(); f++){
+    fruitList.get(f).applyForce(gravity);
+    fruitList.get(f).move();
+    for(int o = 0; o < fruitList.size(); o++){
+      if(fruitList.get(f) != fruitList.get(o)){
+        if(fruitList.get(f).inContact(fruitList.get(o)) && fruitList.get(f).type==fruitList.get(o).type){
+          f.merge(fruitList, o);
+        }
       }
     }
     f.border();
