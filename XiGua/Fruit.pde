@@ -98,7 +98,7 @@ public class Fruit{
       position.y = height-100-size;
       position.x = position.x;
     }
-    if(position.y <= 100 && dropped){
+    if(position.y <= size && dropped){
       top = true;
       position.y = position.y;
       position.x = position.x;
