@@ -33,7 +33,6 @@ public class Fruit{
   
   void display(){
     fill(0);
-<<<<<<< HEAD
      if (type == 1) {
       grape(position.x,position.y);
     }
@@ -50,25 +49,6 @@ public class Fruit{
       kiwi(position.x,position.y);
       strokeWeight(1);
     }
-=======
-    //if (type == 1) {
-    //  grape(position.x,position.y);
-    //}
-    //else if (type == 2) {
-    //  strawberry(position.x,position.y);
-    //}
-    //else if (type == 3) {
-    //  lime(position.x,position.y);
-    //}
-    //else if (type == 4) {
-    //  lemon(position.x,position.y);
-    //}
-    //else {
-    //  kiwi(position.x,position.y);
-    //  strokeWeight(1);
-    //}
-    pineapple(position.x,position.y);
->>>>>>> leon
   }
   
   void move(){
