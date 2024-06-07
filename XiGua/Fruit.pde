@@ -4,6 +4,7 @@ public class Fruit{
   PVector velocity;
   PVector acceleration;
   int size;
+  float mass;
   boolean dropped;
   
   public Fruit(int type, PVector position){
@@ -11,7 +12,6 @@ public class Fruit{
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     this.position = position;
-    size = 20;
     if (type == 1) {
       size = 10;
     }
@@ -24,101 +24,107 @@ public class Fruit{
     else if (type == 4) {
       size = 25;    
     }
-    else {
+    else if (type == 5){
       size = 28;
     }
+    mass = size*0.01;
     dropped = false;
   }
   
   void display(){
     fill(0);
-    //if (type == 1) {
-    //  grape(position.x,position.y);
-    //}
-    //else if (type == 2) {
-    //  strawberry(position.x,position.y);
-    //}
-    //else if (type == 3) {
-    //  lime(position.x,position.y);
-    //}
-    //else if (type == 4) {
-    //  lemon(position.x,position.y);
-    //}
-    //else {
-    //  kiwi(position.x,position.y);
-    //  strokeWeight(1);
-    //}
-    watermelon(position.x,position.y);
+    if (type == 1) {
+      grape(position.x,position.y);
+    }
+    else if (type == 2) {
+      strawberry(position.x,position.y);
+    }
+    else if (type == 3) {
+      lime(position.x,position.y);
+    }
+    else if (type == 4) {
+      lemon(position.x,position.y);
+    }
+    else if(type == 5){
+      kiwi(position.x,position.y);
+      strokeWeight(1);
+    }
   }
   
   void move(){
-    velocity = velocity.add(acceleration);
-    if(velocity.y < -0.5){
-      velocity.y = -0.5;
-    }
     position = position.add(velocity);
-    velocity.limit(20);
+    velocity = velocity.add(acceleration);
+    velocity.limit(10);
     acceleration = new PVector(0, 0);
   }  
   
   void applyForce(PVector force) {
-    acceleration = acceleration.add(force);
+    acceleration.add(force);
   }
   
-  void inContact(Fruit other){
-    if(position.dist(other.position) <= this.size + other.size + 2){
+  boolean inContact(Fruit other){
+    if(position.dist(other.position) < this.size + other.size+2){
       if(other.dropped == true){
         dropped = true;
-        PVector diff = PVector.sub(position, other.position);
-        float angle = diff.heading();
-        float dP = (this.size + other.size+2) - position.dist(other.position);
-        float vertical = sin(angle)*dP;
-        float horizontal = cos(angle)*dP;
-        position.y += vertical;
-        position.x += horizontal;
-        float oVX = other.velocity.x;
-        float oVY = other.velocity.y;
-        other.velocity.x += velocity.x*cos(angle);
-        other.velocity.y += velocity.y*sin(angle);
-        velocity.x += oVX*cos(angle);
-        velocity.y += oVY*sin(angle);
+        PVector diff = PVector.sub(position, other.position).normalize();
+        position.add(diff);
+        other.position.sub(diff);
+        
+       float angle = PVector.sub(velocity, other.velocity).heading();
+       PVector[] rotatedV = {new PVector(), new PVector()};
+       
+       float newV1 = (mass - other.mass)/(mass + other.mass)*velocity.mag() + (2*other.mass / (mass + other.mass))*other.velocity.mag();
+       float newV2 = (2*mass)/(mass + other.mass)*velocity.mag() - ((mass - other.mass)/(mass + other.mass))*other.velocity.mag();
+       
+       rotatedV[0].setMag(newV1*.3);
+       rotatedV[1].setMag(newV2*.3);
+       
+       velocity = rotatedV[0].rotate(angle);
+       other.velocity = rotatedV[1].rotate(angle + PI);
       }
+      return true;
+    }
+    else{
+      return false;
     }
   }
-  
-  boolean touching(Fruit other) {
-      if(position.y>=height-100-size) {
-        dropped = true;
-      }
-      if(position.dist(other.position) <= this.size + other.size + 1){
-        if(other.dropped == true){
-         dropped = true;
-         return true;
-        }
-      }
-      return false;
-  }
-  
   
   boolean border(){
     boolean top = false;
     if(position.y >= height-100-size){
       dropped = true;
-      velocity.y = 0;
+      velocity.y *= -0.3;
+      velocity.x *= 0.3;
       position.y = height-100-size;
+      position.x = position.x;
     }
-    if(position.y <= 100 && dropped){
+    if(position.y <= size && dropped){
       top = true;
+      position.y = position.y;
+      position.x = position.x;
+      velocity.y *= -0.3;
+      velocity.x *= 0.3;
     }
     if(position.x >= width - size){
       position.x = width - size;
-      velocity.x *= -1;
+      position.y = position.y;
+      velocity.x *= -0.3;
+      velocity.y *= 0.3;
     }   
     if(position.x <= size){
       position.x = size;
-      velocity.x *= -1;
+      position.y = position.y;
+      velocity.x *= -0.3;
+      velocity.y *= 0.3;
     }
     return top;
+  }
+  
+  void merge(ArrayList<Fruit> list, int fruit1, int fruit2){
+    PVector location = list.get(fruit1).position;
+    Fruit merge = new Fruit(list.get(fruit1).type + 1, location);
+    list.set(fruit1, merge);
+    list.remove(fruit2);
   }
   
   void grape(float x, float y) {
@@ -173,7 +179,7 @@ public class Fruit{
     stroke(#4d3e1e);
     strokeWeight(2);
     fill(#e2f569);
-    circle(x,y,55);
+    circle(x,y,56);
     strokeWeight(3);
     circle(x,y,20);
   }
