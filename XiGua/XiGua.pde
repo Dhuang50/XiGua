@@ -1,6 +1,7 @@
 ArrayList<Fruit> fruitList;
 int score = 0;
-PVector gravity = new PVector(0, 0.05);
+int mergeScore = 0;
+PVector gravity = new PVector(0, 0.5);
 Fruit focusFruit;
 Fruit empty = new Fruit(0, new PVector(0,0));
 boolean gameOver = false;
@@ -90,9 +91,12 @@ void draw() {
     for(int o = 0; o < fruitList.size(); o++){
       if(fruitList.get(f) != fruitList.get(o)){
         if(fruitList.get(f).inContact(fruitList.get(o)) && fruitList.get(f).type==fruitList.get(o).type){
-          fruitList.get(f).merge(fruitList, f, o);
+          mergeScore += fruitList.get(f).merge(fruitList, f, o);
           f--;
           o--;
+        }
+        if(f < 0){
+          f = 0;
         }
       }
     }
@@ -173,8 +177,16 @@ void mouseClicked() {
       runSketch(new String[]{"Instructions"}, instruction);
     }
     
-    if(gameOver){
-      //if()
+    if(gameOver || win){
+      if(inRestart()){
+        gameOver = false;
+        start = false;
+        win = false;
+        score = 0;
+        mergeScore = 0;
+        fruitList = new ArrayList<Fruit>();
+        redraw();
+      }
     }
   }
 }
@@ -184,6 +196,7 @@ int displayScore() {
   for (Fruit f: fruitList){
     sum += f.type;
   }
+  sum += mergeScore;
   return sum;
 }
 

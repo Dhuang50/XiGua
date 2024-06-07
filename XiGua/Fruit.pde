@@ -120,11 +120,13 @@ public class Fruit{
     return top;
   }
   
-  void merge(ArrayList<Fruit> list, int fruit1, int fruit2){
+  int merge(ArrayList<Fruit> list, int fruit1, int fruit2){
     PVector location = list.get(fruit1).position;
+    int points = list.get(fruit1).type;
     Fruit merge = new Fruit(list.get(fruit1).type + 1, location);
     list.set(fruit1, merge);
     list.remove(fruit2);
+    return points*2;
   }
   
   void grape(float x, float y) {
