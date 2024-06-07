@@ -48,7 +48,7 @@ public class Fruit{
     //  kiwi(position.x,position.y);
     //  strokeWeight(1);
     //}
-    pineapple(position.x,position.y);
+    watermelon(position.x,position.y);
   }
   
   void move(){
@@ -268,15 +268,50 @@ public class Fruit{
     line(x-53,y-53,x-30,y-30);
     line(x+53,y-53,x+30,y-30);
 
-    fill(#fadaa5);
-    noStroke();
-    arc(x,y-80,40,40,0,PI);
-
     size = 80;
   }
   
-  void coconut(float x, float y) {}
+  void coconut(float x, float y) {
+    stroke(0);
+    strokeWeight(6);
+    fill(255);
+    circle(x,y,180);
+    
+    noStroke();
+    fill(#adacac);
+    circle(x,y,120);
+    
+    fill(#d1d1d1);
+    circle(x,y+20,80);
+    
+    
+    size = 90;
+  }
   
-  void watermelon(float x, float y) {}
+  void watermelon(float x, float y) {
+    stroke(#4c6b4e);
+    strokeWeight(5);
+    fill(255);
+    circle(x,y,200);
+    
+    noStroke();
+    fill(#ed4a4a);
+    circle(x,y,185);
+    
+    stroke(0);
+    fill(0);
+    circle(x-40,y,4);
+    circle(x+40,y,4);
+    circle(x,y+40,4);
+    circle(x,y-40,4);
+
+    circle(x+25,y-26,4);    
+    circle(x-25,y-26,4);
+    circle(x+25,y+26,4);
+    circle(x-25,y+26,4);
+
+    size = 100;
+  
+  }
   
 }
