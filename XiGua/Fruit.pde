@@ -47,7 +47,6 @@ public class Fruit{
     }
     else if(type == 5){
       kiwi(position.x,position.y);
-      strokeWeight(1);
     }
   }
   
@@ -184,6 +183,7 @@ public class Fruit{
     circle(x,y,56);
     strokeWeight(3);
     circle(x,y,20);
+    strokeWeight(1);
   }
   
   void peach(float x, float y) {
