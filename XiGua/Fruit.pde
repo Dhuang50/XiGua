@@ -47,7 +47,24 @@ public class Fruit{
     }
     else if(type == 5){
       kiwi(position.x,position.y);
-      strokeWeight(1);
+    }
+    else if(type == 5){
+      peach(position.x,position.y);
+    }
+    else if(type == 6){
+      apple(position.x,position.y);
+    }
+    else if(type == 7){
+      dragonfruit(position.x,position.y);
+    }
+    else if(type == 8){
+      pineapple(position.x,position.y);
+    }
+    else if(type == 9){
+      coconut(position.x,position.y);
+    }
+    else if(type == 10){
+      watermelon(position.x,position.y);
     }
   }
   

@@ -118,6 +118,11 @@ void draw() {
     textAlign(CENTER);
     text("Xi Gua !!!", width/2, height/4 ); 
     
+    
+   PVector cFruitL = new PVector(width/2, height/2 - 50);
+    Fruit cFruit = new Fruit (10, cFruitL);
+    cFruit.display();
+    
     if(inStart()){
       fill(#fadaa5);
       strokeWeight(5);
@@ -230,7 +235,7 @@ boolean inRestart() {
 boolean checkWin() {
   int count = 0;
   for (Fruit f: fruitList){
-    if(f.type == 11){
+    if(f.type == 10){
       count++;
     }
   }
