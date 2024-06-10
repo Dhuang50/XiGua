@@ -48,22 +48,22 @@ public class Fruit{
     else if(type == 5){
       kiwi(position.x,position.y);
     }
-    else if(type == 5){
+    else if(type == 6){
       peach(position.x,position.y);
     }
-    else if(type == 6){
+    else if(type == 7){
       apple(position.x,position.y);
     }
-    else if(type == 7){
+    else if(type == 8){
       dragonfruit(position.x,position.y);
     }
-    else if(type == 8){
+    else if(type == 9){
       pineapple(position.x,position.y);
     }
-    else if(type == 9){
+    else if(type == 10){
       coconut(position.x,position.y);
     }
-    else if(type == 10){
+    else if(type == 11){
       watermelon(position.x,position.y);
     }
   }
@@ -149,49 +149,57 @@ public class Fruit{
   void grape(float x, float y) {
     noStroke();
     fill(#8748b8); 
-    circle(x,y,20);
+    circle(x,y,40);
 
     fill(#bc82e8);
-    circle(x,y,15);
+    circle(x,y,30);
+    
+    size = 20;
   }
   
   void strawberry(float x, float y) {
     noStroke();
     fill(#e05012);
-    circle(x,y+2,30);
-    ellipse(x-7,y-3,20,30);
-    ellipse(x+7,y-3,20,30);
+    circle(x,y+2,60);
+    ellipse(x-7,y-3,40,60);
+    ellipse(x+7,y-3,40,60);
     
     fill(#eb885b);
-    ellipse(x,y-3,12,15);
+    ellipse(x,y-3,24,30);
+    
+    size = 30;
   }
   
   void lime(float x, float y) {
     noStroke();
     fill(#7bed34);
-    circle(x,y,40);
+    circle(x,y,80);
     
     noFill();
     stroke(#e8f2e1);
-    circle(x,y,35);
-    line(x-13,y-13,x+13,y+13);
-    line(x-13,y+13,x+13,y-13);
-    line(x-17,y,x+17,y);
-    line(x,y+17,x,y-17);
+    circle(x,y,70);
+    line(x-26,y-26,x+26,y+26);
+    line(x-26,y+26,x+26,y-26);
+    line(x-34,y,x+34,y);
+    line(x,y+34,x,y-34);
+    
+    size = 40;
   }
   
   void lemon(float x, float y) {
     noStroke();
     fill(#f7f30c);
-    circle(x,y,50);
+    circle(x,y,100);
     
     noFill();
     stroke(#e3c962);
-    circle(x,y,45);
-    line(x-16,y-16,x+16,y+16);
-    line(x-16,y+16,x+16,y-16);
-    line(x-20,y,x+20,y);
-    line(x,y+20,x,y-20);
+    circle(x,y,90);
+    line(x-32,y-32,x+32,y+32);
+    line(x-32,y+32,x+32,y-32);
+    line(x-40,y,x+40,y);
+    line(x,y+40,x,y-40);
+    
+    size = 50;
   }
   
   void kiwi(float x, float y) {
@@ -202,6 +210,8 @@ public class Fruit{
     strokeWeight(3);
     circle(x,y,20);
     strokeWeight(1);
+    
+    size = 28;
   }
   
   void peach(float x, float y) {

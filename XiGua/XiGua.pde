@@ -4,7 +4,7 @@ int mergeScore = 0;
 PVector gravity = new PVector(0, 0.5);
 Fruit focusFruit;
 Fruit empty = new Fruit(0, new PVector(0,0));
-boolean gameOver = true;
+boolean gameOver = false;
 boolean start = false;
 boolean win = false;
 
@@ -136,7 +136,7 @@ void draw() {
     
     
    PVector cFruitL = new PVector(width/2, height/2 - 50);
-    Fruit cFruit = new Fruit (10, cFruitL);
+    Fruit cFruit = new Fruit (11, cFruitL);
     cFruit.display();
     
     if(inStart()){
