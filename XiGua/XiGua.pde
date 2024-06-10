@@ -4,9 +4,9 @@ int mergeScore = 0;
 PVector gravity = new PVector(0, 0.5);
 Fruit focusFruit;
 Fruit empty = new Fruit(0, new PVector(0,0));
-boolean gameOver = false;
+boolean gameOver = true;
 boolean start = false;
-boolean win = true;
+boolean win = false;
 
 void setup() {
   size(600,800);
@@ -54,7 +54,16 @@ void draw() {
     textSize(75);
     text("You Have", width/2 - 175, height/4);
     text("Lost !!", width/2 - 100, height/4 + 100);
-    
+    fill(#5f7cb3);
+    stroke(0);
+    circle(width/2,height/2+20,200);
+    strokeWeight(2);
+    line(width/2+30,height/2-40,width/2+30,height/2+20);    
+    line(width/2-30,height/2-40,width/2-30,height/2+20);
+    strokeWeight(1);
+    fill(#ed3b0e);
+    arc(width/2, height/2+80, 100, 60, PI, TWO_PI, CHORD);
+
     if(inRestart()){
       fill(#fadaa5);
       strokeWeight(5);
