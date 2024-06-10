@@ -21,38 +21,38 @@ void draw() {
     background(#fadaa5);
     fill(#0096FF);
     textSize(75);
-    text("You Have", width/2 - 175, height/4);
-    text("Won !!", width/2 - 100, height/4 + 100);
+    text("You Have", 300, 200);
+    text("Won !!", 300, 300);
     
     if(inRestart()){
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 150, height/2 +60, 350, 75);
+      rect(width/2 - 150, height/2 +120, 350, 75);
     }
     
     fill(255);
     strokeWeight(1);
-    PVector restartFruitL = new PVector(width/2 - 100, height/2 + 100);
+    PVector restartFruitL = new PVector(width/2 - 100, 560);
     Fruit restartFruit = new Fruit (5, restartFruitL);
     restartFruit.display();
     
     fill(255);
     textSize(50);
-    text("Restart", width/2 - 50, height/2 + 115);
+    text("Restart", 350, 575);
   }
   else if(gameOver){
     background(#fadaa5);
     fill(#880808);
     textSize(75);
-    text("You Have", width/2 - 175, height/4);
-    text("Lost !!", width/2 - 100, height/4 + 100);
+    text("You Have", 300, 200);
+    text("Lost !!", 300, 300);
     
     if(inRestart()){
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 150, height/2 +60, 350, 75);
+      rect(width/2 - 150, height/2 +120, 350, 75);
     }
     
     fill(255);
@@ -224,7 +224,7 @@ boolean inInstructions() {
 }
 
 boolean inRestart() {
-  if (width/2 - 150 <= mouseX && mouseX <= width/2 + 200 && height/2 + 60 <= mouseY && mouseY <= height/2 + 135){
+  if (width/2 - 150 <= mouseX && mouseX <= width/2 + 200 && height/2 + 120 <= mouseY && mouseY <= height/2 + 195){
     return true;
   }
   else {
@@ -235,8 +235,11 @@ boolean inRestart() {
 boolean checkWin() {
   int count = 0;
   for (Fruit f: fruitList){
-    if(f.type == 10){
+    if(f.type == 10 && f.dropped){
       count++;
+    }
+    if(f.type > 10){
+      count += 2;
     }
   }
   return count >= 2;
