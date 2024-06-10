@@ -6,7 +6,7 @@ Fruit focusFruit;
 Fruit empty = new Fruit(0, new PVector(0,0));
 boolean gameOver = false;
 boolean start = false;
-boolean win = false;
+boolean win = true;
 
 void setup() {
   size(600,800);
@@ -23,23 +23,30 @@ void draw() {
     textSize(75);
     text("You Have", width/2 - 175, height/4);
     text("Won !!", width/2 - 100, height/4 + 100);
-    
+    fill(#f7dd59);
+    circle(width/2,height/2+20,200);
+    strokeWeight(2);
+    line(width/2+30,height/2-40,width/2+30,height/2+20);    
+    line(width/2-30,height/2-40,width/2-30,height/2+20);
+    strokeWeight(1);
+    fill(#ed3b0e);
+    arc(width/2, height/2+60, 100, 60, 0, PI, CHORD);
     if(inRestart()){
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 150, height/2 +60, 350, 75);
+      rect(width/2 - 150, height/2 +110, 350, 75);
     }
     
     fill(255);
     strokeWeight(1);
-    PVector restartFruitL = new PVector(width/2 - 100, height/2 + 100);
+    PVector restartFruitL = new PVector(width/2 - 100, height/2 + 150);
     Fruit restartFruit = new Fruit (5, restartFruitL);
     restartFruit.display();
     
     fill(255);
     textSize(50);
-    text("Restart", width/2 - 50, height/2 + 115);
+    text("Restart", width/2 - 50, height/2 + 175);
   }
   else if(gameOver){
     background(#fadaa5);
