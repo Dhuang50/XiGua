@@ -71,7 +71,7 @@ public class Fruit{
   void move(){
     position = position.add(velocity);
     velocity = velocity.add(acceleration);
-    velocity.limit(1);
+    velocity.limit(10);
     acceleration = new PVector(0, 0);
   }  
   
@@ -98,7 +98,6 @@ public class Fruit{
        
        velocity = rotatedV[0].rotate(angle);
        other.velocity = rotatedV[1].rotate(angle + PI);
-       
       }
       return true;
     }
@@ -109,31 +108,29 @@ public class Fruit{
   
   boolean border(){
     boolean top = false;
-    float xPos = position.x;
-    float yPos = position.y;
-    if(yPos >= height-100-size){
+    if(position.y >= height-100-size){
       dropped = true;
       velocity.y *= -0.3;
       velocity.x *= 0.3;
       position.y = height-100-size;
-      position.x = xPos;
+      position.x = position.x;
     }
     if(position.y <= size && dropped){
       top = true;
-      position.y = yPos;
-      position.x = xPos;
+      position.y = position.y;
+      position.x = position.x;
       velocity.y *= -0.3;
       velocity.x *= 0.3;
     }
     if(position.x >= width - size){
       position.x = width - size;
-      position.y = yPos;
+      position.y = position.y;
       velocity.x *= -0.3;
       velocity.y *= 0.3;
     }   
     if(position.x <= size){
       position.x = size;
-      position.y = yPos;
+      position.y = position.y;
       velocity.x *= -0.3;
       velocity.y *= 0.3;
     }
