@@ -161,13 +161,13 @@ public class Fruit{
     noStroke();
     fill(#e05012);
     circle(x,y+2,60);
-    ellipse(x-7,y-3,40,60);
-    ellipse(x+7,y-3,40,60);
+    ellipse(x-14,y-6,40,60);
+    ellipse(x+14,y-6,40,60);
     
     fill(#eb885b);
     ellipse(x,y-3,24,30);
     
-    size = 30;
+    size = 35;
   }
   
   void lime(float x, float y) {
@@ -177,6 +177,7 @@ public class Fruit{
     
     noFill();
     stroke(#e8f2e1);
+    strokeWeight(2);
     circle(x,y,70);
     line(x-26,y-26,x+26,y+26);
     line(x-26,y+26,x+26,y-26);
@@ -193,11 +194,12 @@ public class Fruit{
     
     noFill();
     stroke(#e3c962);
+    strokeWeight(2);
     circle(x,y,90);
     line(x-32,y-32,x+32,y+32);
     line(x-32,y+32,x+32,y-32);
-    line(x-40,y,x+40,y);
-    line(x,y+40,x,y-40);
+    line(x-44,y,x+44,y);
+    line(x,y+44,x,y-44);
     
     size = 50;
   }
@@ -206,147 +208,147 @@ public class Fruit{
     stroke(#4d3e1e);
     strokeWeight(2);
     fill(#e2f569);
-    circle(x,y,56);
+    circle(x,y,112);
     strokeWeight(3);
-    circle(x,y,20);
+    circle(x,y,40);
     strokeWeight(1);
     
-    size = 28;
+    size = 56;
   }
   
   void peach(float x, float y) {
     stroke(#ff2b41);
     fill(#fcb874);
-    ellipse(x,y,70,66);
+    ellipse(x,y,140,132);
     
     noStroke();
     fill(#78532f);
-    ellipse(x,y-3,25,40);
-    size = 35;
+    ellipse(x,y-6,50,80);
+    size = 70;
   }
   
   void apple(float x, float y) {
     stroke(#ff0800);
     strokeWeight(2);
     fill(#fae3bb);
-    circle(x,y,80);
+    circle(x,y,160);
     
     fill(0);
     stroke(0);
-    line(x-7,y-5,x-2,y+1);
-    line(x-8,y+5,x-3,y+5);
-    line(x-7,y+13,x-2,y+9);
+    line(x-14,y-10,x-4,y+2);
+    line(x-10,y+10,x-6,y+10);
+    line(x-14,y+26,x-4,y+18);
     
-    line(x+7,y-5,x+2,y+1);
-    line(x+8,y+5,x+3,y+5);
-    line(x+7,y+13,x+2,y+9);
+    line(x+14,y-10,x+4,y+2);
+    line(x+16,y+10,x+6,y+10);
+    line(x+14,y+26,x+4,y+18);
 
-    size = 40;
+    size = 80;
   }
   
   void dragonfruit(float x, float y) {
     stroke(#fa25ac);
     strokeWeight(3);
     fill(#ebe6e8);
-    circle(x,y,120);
+    circle(x,y,180);
     
     stroke(0);
     fill(0);
-    circle(x-20,y,2);
-    circle(x-40,y,2);
-    circle(x+20,y,2);
-    circle(x+40,y,2);
-    circle(x,y+20,2);
-    circle(x,y+40,2);
-    circle(x,y-20,2);
-    circle(x,y-40,2);
+    circle(x-30,y,3);
+    circle(x-60,y,3);
+    circle(x+30,y,3);
+    circle(x+60,y,3);
+    circle(x,y+30,3);
+    circle(x,y+60,3);
+    circle(x,y-30,3);
+    circle(x,y-60,3);
     
-    circle(x-15,y+15,2);
-    circle(x-35,y+16,2);
-    circle(x-20,y+30,2);
+    circle(x-23,y+23,3);
+    circle(x-53,y+24,3);
+    circle(x-30,y+45,3);
     
-    circle(x+15,y+15,2);
-    circle(x+35,y+16,2);
-    circle(x+20,y+30,2);
+    circle(x+23,y+23,3);
+    circle(x+53,y+24,3);
+    circle(x+30,y+45,3);
 
-    circle(x-15,y-15,2);
-    circle(x-35,y-16,2);
-    circle(x-20,y-30,2);
+    circle(x-23,y-23,3);
+    circle(x-53,y-24,3);
+    circle(x-30,y-45,3);
 
-    circle(x+15,y-15,2);
-    circle(x+35,y-16,2);
-    circle(x+20,y-30,2);
+    circle(x+23,y-23,3);
+    circle(x+53,y-24,3);
+    circle(x+30,y-45,3);
 
   
-    size = 60;
+    size = 90;
   }
   
   void pineapple(float x, float y) {
     stroke(#dbaa37);
     strokeWeight(3);
     fill(#f7c95c);
-    circle(x,y,160);
+    circle(x,y,200);
     
     fill(#ffde91);
-    circle(x,y,70);
+    circle(x,y,88);
     
     fill(#ffeab8);
     stroke(#e6cc91);
-    circle(x,y,20);
+    circle(x,y,25);
     
     stroke(#fae99d);
-    line(x-70,y,x-40,y);
-    line(x,y+40,x,y+70);
-    line(x+70,y,x+40,y);
-    line(x,y-40,x,y-70);
-    line(x-53,y+53,x-30,y+30);
-    line(x+53,y+53,x+30,y+30);
-    line(x-53,y-53,x-30,y-30);
-    line(x+53,y-53,x+30,y-30);
+    line(x-88,y,x-50,y);
+    line(x,y+50,x,y+88);
+    line(x+88,y,x+50,y);
+    line(x,y-50,x,y-88);
+    line(x-66,y+66,x-38,y+38);
+    line(x+66,y+66,x+38,y+38);
+    line(x-66,y-66,x-38,y-38);
+    line(x+66,y-66,x+38,y-38);
 
-    size = 80;
+    size = 100;
   }
   
   void coconut(float x, float y) {
     stroke(0);
     strokeWeight(6);
     fill(255);
-    circle(x,y,180);
+    circle(x,y,220);
     
     noStroke();
     fill(#adacac);
-    circle(x,y,120);
+    circle(x,y,146);
     
     fill(#d1d1d1);
-    circle(x,y+20,80);
+    circle(x,y+24,98);
     
     
-    size = 90;
+    size = 110;
   }
   
   void watermelon(float x, float y) {
     stroke(#4c6b4e);
     strokeWeight(5);
     fill(255);
-    circle(x,y,200);
+    circle(x,y,240);
     
     noStroke();
     fill(#ed4a4a);
-    circle(x,y,185);
+    circle(x,y,222);
     
     stroke(0);
     fill(0);
-    circle(x-40,y,4);
-    circle(x+40,y,4);
-    circle(x,y+40,4);
-    circle(x,y-40,4);
+    circle(x-48,y,5);
+    circle(x+48,y,5);
+    circle(x,y+48,5);
+    circle(x,y-48,5);
 
-    circle(x+25,y-26,4);    
-    circle(x-25,y-26,4);
-    circle(x+25,y+26,4);
-    circle(x-25,y+26,4);
+    circle(x+30,y-31,5);    
+    circle(x-30,y-31,5);
+    circle(x+30,y+31,5);
+    circle(x-30,y+31,5);
 
-    size = 100;
+    size = 120;
   
   }
   
