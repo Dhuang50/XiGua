@@ -236,7 +236,7 @@ public class Fruit{
     fill(0);
     stroke(0);
     line(x-14,y-10,x-4,y+2);
-    line(x-10,y+10,x-6,y+10);
+    line(x-16,y+10,x-6,y+10);
     line(x-14,y+26,x-4,y+18);
     
     line(x+14,y-10,x+4,y+2);
