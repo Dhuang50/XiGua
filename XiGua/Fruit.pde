@@ -13,19 +13,37 @@ public class Fruit{
     acceleration = new PVector(0, 0);
     this.position = position;
     if (type == 1) {
-      size = 10;
+      size = 20;
     }
     else if (type == 2) {
-      size = 15;  
+      size = 35;  
     }
     else if (type == 3) {
-      size = 20;   
+      size = 40;   
     }
     else if (type == 4) {
-      size = 25;    
+      size = 50;    
     }
     else if (type == 5){
-      size = 28;
+      size = 56;
+    }
+    else if (type == 6){
+      size = 70;
+    }
+    else if (type == 7){
+      size = 80;
+    }
+    else if (type == 8){
+      size = 90;
+    }
+    else if (type == 9){
+      size = 100;
+    }
+    else if (type == 10){
+      size = 110;
+    }
+    else if (type == 11){
+      size = 120;
     }
     mass = size*0.01;
     dropped = false;
@@ -48,22 +66,22 @@ public class Fruit{
     else if(type == 5){
       kiwi(position.x,position.y);
     }
-    else if(type == 5){
+    else if(type == 6){
       peach(position.x,position.y);
     }
-    else if(type == 6){
+    else if(type == 7){
       apple(position.x,position.y);
     }
-    else if(type == 7){
+    else if(type == 8){
       dragonfruit(position.x,position.y);
     }
-    else if(type == 8){
+    else if(type == 9){
       pineapple(position.x,position.y);
     }
-    else if(type == 9){
+    else if(type == 10){
       coconut(position.x,position.y);
     }
-    else if(type == 10){
+    else if(type == 11){
       watermelon(position.x,position.y);
     }
   }
@@ -71,7 +89,7 @@ public class Fruit{
   void move(){
     position = position.add(velocity);
     velocity = velocity.add(acceleration);
-    velocity.limit(1);
+    velocity.limit(20);
     acceleration = new PVector(0, 0);
   }  
   
@@ -88,13 +106,15 @@ public class Fruit{
         other.position.sub(diff);
         
        float angle = PVector.sub(velocity, other.velocity).heading();
-       PVector[] rotatedV = {new PVector(), new PVector()};
-       
+       PVector[] rotatedV = {new PVector(0, 0), new PVector(0, 0)};
+      
        float newV1 = (mass - other.mass)/(mass + other.mass)*velocity.mag() + (2*other.mass / (mass + other.mass))*other.velocity.mag();
        float newV2 = (2*mass)/(mass + other.mass)*velocity.mag() - ((mass - other.mass)/(mass + other.mass))*other.velocity.mag();
        
        rotatedV[0].setMag(newV1*.3);
        rotatedV[1].setMag(newV2*.3);
+       
+       angle = PVector.sub(position, other.position).heading();
        
        velocity = rotatedV[0].rotate(angle);
        other.velocity = rotatedV[1].rotate(angle + PI);
@@ -129,13 +149,13 @@ public class Fruit{
       position.x = width - size;
       position.y = yPos;
       velocity.x *= -0.3;
-      velocity.y *= 0.3;
+      velocity.y *= 0.8;
     }   
     if(position.x <= size){
       position.x = size;
       position.y = yPos;
       velocity.x *= -0.3;
-      velocity.y *= 0.3;
+      velocity.y *= 0.8;
     }
     return top;
   }
