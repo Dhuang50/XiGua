@@ -1,16 +1,21 @@
 ArrayList<Fruit> fruitList;
-int score = 0;
-int mergeScore = 0;
+int score;
+int mergeScore;
 PVector gravity = new PVector(0, 0.5);
 Fruit focusFruit;
 Fruit empty = new Fruit(0, new PVector(0,0));
-boolean gameOver = false;
-boolean start = false;
-boolean win = false;
+boolean gameOver;
+boolean start;
+boolean win;
 
 void setup() {
   size(600,800);
   fruitList = new ArrayList<Fruit>();
+  gameOver = false;
+  start = false;
+  win = false;
+  score = 0;
+  mergeScore = 0;
 }
 
 void draw() {
@@ -18,14 +23,16 @@ void draw() {
   textFont(font);
   
   if(win){
+    start = false;
     background(#fadaa5);
     fill(#0096FF);
     textSize(75);
-    text("You Have", width/2 - 175, height/4);
-    text("Won !!", width/2 - 100, height/4 + 100);
+    text("You Have", width/2, height/2 - 200);
+    text("Won !!", width/2, height/2 - 100);
     fill(#f7dd59);
     circle(width/2,height/2+20,200);
     strokeWeight(2);
+    stroke(0);
     line(width/2+30,height/2-40,width/2+30,height/2+20);    
     line(width/2-30,height/2-40,width/2-30,height/2+20);
     strokeWeight(1);
@@ -35,25 +42,27 @@ void draw() {
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 150, height/2 +110, 350, 75);
+      rect(width/2 - 180, height/2 +160, 350, 100);
     }
     
     fill(255);
     strokeWeight(1);
-    PVector restartFruitL = new PVector(width/2 - 100, height/2 + 150);
-    Fruit restartFruit = new Fruit (5, restartFruitL);
+    PVector restartFruitL = new PVector(width/2 - 125, height/2 + 210);
+    Fruit restartFruit = new Fruit (1, restartFruitL);
     restartFruit.display();
     
     fill(255);
     textSize(50);
-    text("Restart", width/2 - 50, height/2 + 175);
+    text("Restart", 350, height/2 + 230);
   }
   else if(gameOver){
+    start = false;
     background(#fadaa5);
     fill(#880808);
     textSize(75);
-    text("You Have", width/2 - 175, height/4);
-    text("Lost !!", width/2 - 100, height/4 + 100);
+    text("You Have", width/2, height/2 - 200);
+    text("Lost !!", width/2, height/2 - 100);
+
     fill(#5f7cb3);
     stroke(0);
     circle(width/2,height/2+20,200);
@@ -68,18 +77,18 @@ void draw() {
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 150, height/2 +60, 350, 75);
+      rect(width/2 - 180, height/2 +160, 350, 100);
     }
     
     fill(255);
     strokeWeight(1);
-    PVector restartFruitL = new PVector(width/2 - 100, height/2 + 100);
+    PVector restartFruitL = new PVector(width/2 - 135, height/2 + 215);
     Fruit restartFruit = new Fruit (2, restartFruitL);
     restartFruit.display();
-    
+ 
     fill(255);
     textSize(50);
-    text("Restart", width/2 - 50, height/2 + 115);
+    text("Restart", 350, height/2 + 230);
   }
   else if(start){
     background(#fadaa5);
@@ -143,32 +152,32 @@ void draw() {
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 200, height/2 +70, 400, 75);
+      rect(width/2 - 200, height/2 +90, 400, 90);
     }
     
     fill(255);
     strokeWeight(1);
-    PVector startFruitL = new PVector(width/2 - 150, height/2 + 105);
+    PVector startFruitL = new PVector(width/2 - 150, height/2 + 137);
     Fruit startFruit = new Fruit (3, startFruitL);
     startFruit.display();
     
     textSize(40);
     fill(255);
-    text("Start Game ", width/2 + 25, height/2 + 120);
+    text("Start Game ", width/2 + 50, height/2 + 150);
     
     if(inInstructions()){
       fill(#fadaa5);
       strokeWeight(5);
       stroke(255);
-      rect(width/2 - 200, height/2 +150, 400, 75);
+      rect(width/2 - 200, height/2 +200, 400, 110);
     }
     
     strokeWeight(1);
-    PVector instructionFruitL = new PVector(width/2 - 150, height/2 + 190);
+    PVector instructionFruitL = new PVector(width/2 - 140, height/2 + 255);
     Fruit instructionFruit = new Fruit (4, instructionFruitL);
     instructionFruit.display();
     fill(255);
-    text("Instructions", width/2 + 25, height/2 + 205);
+    text("Instructions", width/2 + 50, height/2 + 270);
   }
 }
 
@@ -179,7 +188,7 @@ void spawnFruit() {
   focusFruit = newf;
 }
 
-void mouseClicked() {
+void mousePressed() {
   if(start){
     if(fruitList.size() == 0 || fruitList.get(fruitList.size()-1).dropped){
       fruitList.add(focusFruit);
@@ -222,7 +231,7 @@ int displayScore() {
 }
 
 boolean inStart() {
-  if (width/2 - 200 <= mouseX && mouseX <= width/2 + 200 && height/2 + 70 <= mouseY && mouseY <= height/2 + 145){
+  if (width/2 - 200 <= mouseX && mouseX <= width/2 + 200 && height/2 + 90 <= mouseY && mouseY <= height/2 + 180){
     return true;
   }
   else {
@@ -231,7 +240,7 @@ boolean inStart() {
 }
 
 boolean inInstructions() {
-  if (width/2 - 200 <= mouseX && mouseX <= width/2 + 200 && height/2 + 150 <= mouseY && mouseY <= height/2 + 220){
+  if (width/2 - 200 <= mouseX && mouseX <= width/2 + 200 && height/2 + 200 <= mouseY && mouseY <= height/2 + 310){
     return true;
   }
   else {
@@ -240,7 +249,7 @@ boolean inInstructions() {
 }
 
 boolean inRestart() {
-  if (width/2 - 150 <= mouseX && mouseX <= width/2 + 200 && height/2 + 60 <= mouseY && mouseY <= height/2 + 135){
+  if (120 <= mouseX && mouseX <= 470 && 560 <= mouseY && mouseY <= 660){
     return true;
   }
   else {
@@ -251,8 +260,11 @@ boolean inRestart() {
 boolean checkWin() {
   int count = 0;
   for (Fruit f: fruitList){
-    if(f.type == 10){
+    if(f.type == 11 && f.dropped){
       count++;
+    }
+    if(f.type > 11){
+      count += 2;
     }
   }
   return count >= 2;
